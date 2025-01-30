@@ -81,9 +81,7 @@ function handleTileClick(index) {
             statusElement.textContent = 'Boom! Game over.';
             tile.classList.add('mine');
             revealMines();
-            gameOver = true;
-            endGameButton.disabled = false;
-            startGameButton.classList.add('start-game-disabled');
+            endGame();  // Immediately end the game when the mine is clicked
         } else {
             tile.classList.add('safe');
             tile.textContent = 'X';  // Reverting back to "X"
