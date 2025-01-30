@@ -7,54 +7,55 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">Mines Game</div>
-            <div class="user-controls">
-                <div class="balance-info">
-                    <label for="balance">Balance:</label>
-                    <input type="text" id="balance" value="1000" readonly>
+    <div class="baap">
+        <header>
+            <div class="game-container">
+                    <div class="game-settings">
+                        <h2>Mines Game</h2>
+                        <div class="chacha">
+                            <button id="start-game" class="start-game-btn">Start Game</button>
+                            <label for="mine-count">Mines:</label>
+                            <select id="mine-count">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <label for="bet">Bet Amount:</label>
+                            <input type="number" id="bet" min="1" value="1">
+
+                            
+                            <button id="end-game" class="end-game-btn">End Game</button>
+                        </div>
+                    </div>
+
+                    <div class="board-container">
+                        <div id="board" class="board"></div>
+                    </div>
+
+                    <div class="status-container">
+                        <p id="status">Click a tile!</p>
+                    </div>
+                    <div class="header-container">
+                
+                        <div class="user-controls">
+                            <div class="balance-info">
+                                <label for="balance">Balance:</label>
+                                <input type="text" id="balance" value="1000" readonly>
+                            </div>
+                            <div class="user-profile" id="user-profile-icon">User</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="user-profile" id="user-profile-icon">User</div>
-                <button id="logout-button" class="logout-button">Logout</button>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <div class="game-container">
-            <div class="game-settings">
-                <h2>Game Settings</h2>
-                <label for="mine-count">Mines:</label>
-                <select id="mine-count">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
 
-                <label for="bet">Bet Amount:</label>
-                <input type="number" id="bet" min="1" value="1">
-
-                <button id="start-game" class="start-game-btn">Start Game</button>
-                <button id="end-game" class="end-game-btn" disabled>End Game</button>
-            </div>
-
-            <div class="board-container">
-                <div id="board" class="board"></div>
-            </div>
-
-            <div class="status-container">
-                <p id="status">Click a tile to begin!</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2024 Mines Game. All rights reserved.</p>
-    </footer>
-
+        <footer>
+            <p class="bachha">© 2024 Mines Game. All rights reserved.</p>
+        </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
