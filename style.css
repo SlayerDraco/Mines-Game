@@ -9,16 +9,20 @@
     --tile-bg-light: #b0e0e6;
     --tile-bg-dark: #006400;
     --tile-bg-grey: #d3d3d3;
-    --tile-border: 1px solid #bbb;
+    --tile-border: 1px solid #00adb5;
     --tile-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     --tile-inset-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
     --bg-gradient-start: #004d00;
     --bg-gradient-end: #001f3f;
+    --bg-gradient-top: rgb(152,244,105);
+    --bg-gradient-bottom: rgb(213,68,76);
     --mine-bg: #ff4d4d;
     --mine-circle-bg: #c8102e;
     --safe-tile-bg: #28a745;
     --safe-tile-x-color: #fff;
 }
+
+
 
 body {
     font-family: Arial, sans-serif;
@@ -26,15 +30,27 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
     margin: 0;
+    background: linear-gradient(to right, #00BFFF, #FF4500);
     overflow: hidden; /* Prevent body overflow */
 }
+
+.baap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.end-game-btn{
+    background-color: #ff0000;
+}
+
 .game-container {
     text-align: center;
-    background-color: #f0f0f0;
+    background: #222831;
     padding: 20px;
     border-radius: 10px;
+    border: var(--tile-border);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: calc(100vw - 40px); /* Width of container minus padding */
     max-height: calc(100vh - 40px); /* Height of container minus padding */
@@ -46,7 +62,19 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #eeeeee; /* Soft white for contrast */
+    font-family: 'Poppins', sans-serif; /* Modern typography */
 }    
+
+.balance-info{
+    margin-top: 5px;
+    color:white;
+}
+
+.bachha{
+    color:black;
+    margin-bottom: 25px;
+}
 
 .controls {
     display: flex;
@@ -98,7 +126,7 @@ button.start-game-enabled {
     justify-content: center;
     margin: var(--tile-gap);
     border: var(--tile-border);
-    background-color: var(--tile-bg-grey); /* Default grey background */
+    background-color: rgb(14,23,34); /* Default grey background */
     line-height: var(--tile-size);
     font-size: 24px;
     text-align: center;
@@ -165,10 +193,9 @@ button.start-game-enabled {
 
 
 #status {
-    margin-top: 10px;
     font-weight: bold;
     font-size: 18px;
-    color: #333;
+    color: white;
 }
 
 
