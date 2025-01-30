@@ -71,7 +71,6 @@ function handleTileClick(index) {
     const mineCount = parseInt(mineCountSelect.value);
     const incrementalMultiplier = incrementalWinnings[mineCount] || 0.13; // Default to 0.13 for unspecified mine counts
 
-    // Delay the reveal
     setTimeout(() => {
         if (gameOver) return; // Prevent processing if game is over
 
@@ -83,18 +82,18 @@ function handleTileClick(index) {
             tile.classList.add('mine');
             revealMines();
             gameOver = true;
-            endGameButton.disabled = false;  // Enable End Game button
-            startGameButton.classList.add('start-game-disabled');  // Turn Start Game button grey
+            endGameButton.disabled = false;
+            startGameButton.classList.add('start-game-disabled');
         } else {
             tile.classList.add('safe');
-            tile.textContent = 'X';
+            tile.textContent = 'X';  // Reverting back to "X"
             safeTilesClicked++;
             currentWinnings += bet * incrementalMultiplier;
             balance += bet * incrementalMultiplier; // Increase balance by incremental winnings
             balanceInput.value = balance.toFixed(2);
         }
         tile.classList.add('clicked');
-    }, 100); // Delay of 100ms
+    }, 100);
 }
 
 function revealMines() {
@@ -112,6 +111,7 @@ function startGame() {
     startGameButton.disabled = true;
     endGameButton.disabled = false;
     mineCountSelect.disabled = true; // Disable mine count dropdown during game
+    betInput.disabled = true; // Disable bet input during the game
     startGameButton.classList.remove('start-game-disabled');
     startGameButton.classList.add('start-game-enabled');
 }
@@ -120,10 +120,14 @@ function endGame() {
     if (!gameStarted) return;
     gameStarted = false;
     gameOver = true;
+
+    revealMines(); // Reveal mines when the game ends
+
     statusElement.textContent = 'Game ended. Start a new game.';
     endGameButton.disabled = true;
     startGameButton.disabled = false;
     mineCountSelect.disabled = false; // Enable mine count dropdown after game ends
+    betInput.disabled = false; // Enable bet input after the game ends
     startGameButton.classList.remove('start-game-disabled');
     startGameButton.classList.add('start-game-enabled');
 }
