@@ -10,6 +10,7 @@
     --tile-bg-dark: #006400;
     --tile-bg-grey: #d3d3d3;
     --tile-border: 1px solid #00adb5;
+    --button-border: 1px solid white;
     --tile-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     --tile-inset-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
     --bg-gradient-start: #004d00;
@@ -45,6 +46,13 @@ body {
     background-color: #ff0000;
 }
 
+.auto-play-btn{
+    background-color: rgb(14,23,34);
+    color: #00adb5;
+    margin-top: 15px;
+    border: var(--tile-border);
+}
+
 .game-container {
     text-align: center;
     background: #222831;
@@ -67,7 +75,7 @@ body {
 }    
 
 .balance-info{
-    margin-top: 5px;
+    margin-top: 0px;
     color:white;
 }
 
@@ -93,7 +101,7 @@ button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    border: none;
+    border: var(--button-border);
     border-radius: var(--button-radius);
     cursor: pointer;
     background-color: var(--button-bg);
