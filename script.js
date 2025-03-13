@@ -5,6 +5,7 @@ const endGameButton = document.getElementById('end-game');
 const mineCountSelect = document.getElementById('mine-count');
 const balanceInput = document.getElementById('balance');
 const betInput = document.getElementById('bet');
+const betError = document.getElementById('betError');
 
 // User profile management
 const userProfileIcon = document.getElementById('user-profile-icon');
@@ -39,9 +40,9 @@ function initGame() {
     safeTilesClicked = 0;
     currentWinnings = 0;
     statusElement.textContent = 'Click a tile!';
-    betInput.max = balance;  // Set bet max to current balance
-    betInput.value = Math.min(betInput.value, balance);  // Adjust bet value if necessary
-    bet = parseInt(betInput.value, 10);  // Update bet value to integer
+    betInput.max = balance; // Set bet max to current balance
+    betInput.value = Math.min(betInput.value || 1, balance); // Set default bet to 1 if empty
+    bet = parseInt(betInput.value, 10); // Update bet value to integer
 
     // Place mines
     while (mines.length < mineCount) {
@@ -130,18 +131,31 @@ function endGame() {
     startGameButton.classList.add('start-game-enabled');
 }
 
-// Ensure bet does not exceed balance and is a natural number
 betInput.addEventListener('input', () => {
-    bet = parseInt(betInput.value, 10); // Convert bet to integer
-    if (isNaN(bet) || bet < 1) {
-        bet = 1;
+    const betValue = betInput.value.trim();
+    if (betValue === '') {
+        betError.textContent = "Bet cannot be empty.";
+        betError.style.display = 'block';
+        startGameButton.disabled = true;
+    } else {
+        bet = parseInt(betValue, 10);
+        if (isNaN(bet) || bet < 1) {
+            betError.textContent = "Please enter a valid bet.";
+            betError.style.display = 'block';
+            startGameButton.disabled = true;
+        } else if (bet > balance) {
+            bet = balance; // Automatically adjust bet to maximum balance
+            betInput.value = bet; // Update input field
+            betError.textContent = "";
+            betError.style.display = 'none';
+        } else {
+            betError.textContent = "";
+            betError.style.display = 'none';
+        }
+        startGameButton.disabled = false;
     }
-    if (bet > balance) {
-        bet = balance;
-    }
-    betInput.value = bet;
-    startGameButton.disabled = bet < 1; // Disable Start Game button if bet is less than 1
 });
+
 
 // Authentication handling
 function handleUserProfile() {
@@ -153,21 +167,6 @@ function handleUserProfile() {
     }
 }
 
-function logout() {
-    fetch('/logout', { method: 'POST' })
-        .then(response => {
-            if (response.ok) {
-                userLoggedIn = false;
-                userId = null;
-                handleUserProfile();
-                window.location.href = '/'; // Redirect to home page
-            }
-        });
-}
-
-if (logoutButton) {
-    logoutButton.addEventListener('click', logout);
-}
 
 startGameButton.addEventListener('click', startGame);
 endGameButton.addEventListener('click', endGame);
