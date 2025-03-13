@@ -84,6 +84,13 @@ body {
     margin-bottom: 25px;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; /* Hide by default */
+}
+
 .controls {
     display: flex;
     flex-direction: column;
@@ -186,6 +193,10 @@ button.start-game-enabled {
 .tile.clicked {
     pointer-events: none;
     box-shadow: none; /* Remove shadow for clicked tiles */
+}
+
+.tile.selected {
+    background-color: #ccc; /* Grey background for selected tiles */
 }
 
 #board {
