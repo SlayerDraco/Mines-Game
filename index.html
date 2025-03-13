@@ -24,9 +24,8 @@
                             </select>
 
                             <label for="bet">Bet Amount:</label>
-                            <input type="number" id="bet" min="1" value="1">
-
-                            
+                            <input type="number" id="bet" min="1" max="1000" step="1">
+                            <span id="betError" class="error-message"></span>
                             <button id="end-game" class="end-game-btn">End Game</button>
                         </div>
                     </div>
@@ -34,7 +33,7 @@
                     <div class="board-container">
                         <div id="board" class="board"></div>
                     </div>
-
+                    
                     <div class="status-container">
                         <p id="status">Click a tile!</p>
                     </div>
